@@ -1,5 +1,6 @@
 import pandas as pd
 import csv
+import numpy as np
 
 #check wh
 fields = ['Temp 1', 'Temp 2', 'Temp 3', 'Temp 4', 'Temp 5',
@@ -12,21 +13,44 @@ fields = ['Temp 1', 'Temp 2', 'Temp 3', 'Temp 4', 'Temp 5',
 
 filename = 'converted_data.csv'
 arr = []
+inp = []
 
 def convert():
+    array = []
+    arr2 = []
+    '''
     with open('data-test.csv') as f:            #check file-in name
         for line in f:
             array = [line[:-1].split(' ')]
             arr.append(array)
         print(array[0])
+    '''
+    for i in inp:
+        array = [i[:-1].split(' ')]
+        arr2.append(array)
+    print(arr2[0])
 
     with open(filename,'w') as csvfile:         #check file-out name
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(fields)
-        for items in arr:
+        for items in arr2:
             csvwriter.writerows(items)
+
+def get_data():
+    df = pd.read_csv('data stream from arduino.csv')
+    arr = np.array(df)
+    start = 6
+    for i in range(start,1000):
+        if type(arr[i][1])!=float:
+            inp.append(arr[i][1])
+        else:
+            continue
+    
 
 
 if __name__=='__main__':
+    get_data()
     convert()
     print("DONE!")
+
+
