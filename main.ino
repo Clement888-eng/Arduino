@@ -5,13 +5,13 @@ float data[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 
 //Temperature sensor
     //digital pins mux 1
-int m1_s0 = 45;             
-int m1_s1 = 39;
-int m1_s2 = 33;
-int m1_s3 = 27;
+int m1_s0 = 37;             
+int m1_s1 = 41;
+int m1_s2 = 45;
+int m1_s3 = 49;
 
     //Analog pins mux 1
-int m1_SIG_pin = 10;
+int m1_SIG_pin = 15;
 
     //digital pins mux 2
 int m2_s0 = 45;             
@@ -124,7 +124,7 @@ void loop(){
   //Loop through and read all 16 values Temperature sensor
   for(j = 0; j < 13; j ++){
     readMux_1(j);                           //check Mux_1 value
-    delay(50);                              //add slight delay
+    delay(100);                              //add slight delay
     readMux_2(j);
     delay(50);                              
   }
@@ -182,7 +182,7 @@ void loop(){
   //print value
   int loop;
 
-  for(loop = 0; loop < 36; loop++){
+  for(loop = 0; loop < 6; loop++){
     Serial.print((String)data[loop]+" ");
   }
   Serial.println(" ");
